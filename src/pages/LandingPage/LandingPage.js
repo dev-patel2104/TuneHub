@@ -1,8 +1,8 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Button, Flex, Text, Box } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import LandingPageSVG from '../../assets/landingpage.svg';
 import { useMediaQuery } from 'react-responsive';
+import LandingPageSVG from '../../assets/landingpage.svg';
 
 function LandingPage() {
     const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
