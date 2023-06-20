@@ -1,8 +1,9 @@
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, HStack, IconButton, Text, VStack, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, HStack, IconButton, Text, VStack, useDisclosure, Image } from '@chakra-ui/react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { NavLink } from 'react-router-dom';
+import Logo from '../../assets/tunehub.svg';
 
 
 function NavBar() {
@@ -14,7 +15,7 @@ function NavBar() {
       <Flex as="nav" alignItems="center" justify="space-between" h="10vh" w="100%" backgroundColor="#050A30">
         {/* Logo */}
         <NavLink to="/">
-          <Text fontSize="sm" color="white" ml="8px">TuneHub</Text>
+        <Image src={Logo} alt="TuneHub" width="96px" ml="16px"/>
         </NavLink>
         <Box>
           <IconButton
@@ -72,11 +73,8 @@ function NavBar() {
       <Flex as="nav" alignItems="center" justify="space-between" h="10vh" w="100%" backgroundColor="#050A30">
         {/* Logo */}
         <NavLink to="/">
-          <Box padding="16px 24px">
-            <Text color="white">TuneHub</Text>
-          </Box>
+            <Image src={Logo} alt="TuneHub" width="128px" ml="16px"/>
         </NavLink>
-
         <HStack gap="24px" mr="40px">
           {/* Home */}
           <Box>

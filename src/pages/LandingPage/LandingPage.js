@@ -29,7 +29,7 @@ function LandingPage() {
                     </Flex>
                 </Flex>
                 {/* CTA */}
-                <Button fontSize="md" fontWeight="medium" colorScheme='teal' mt="16px" height="32px">Get Started</Button>
+                <Button fontSize="md" fontWeight="medium" colorScheme='teal' mt="16px" height="40px" width="69%">Get Started</Button>
             </Flex>
             :
             <Flex w="100%" minHeight="90vh" backgroundColor="#000C66" alignItems="center" justifyContent="space-evenly">
