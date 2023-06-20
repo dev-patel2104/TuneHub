@@ -59,8 +59,8 @@ function NavBar() {
                   </Box>
                   {/* Contact */}
                   <Box>
-                    <NavLink to='/' onClick={onClose}>
-                      <Text fontWeight="medium" color="white">Contact</Text>
+                    <NavLink to='/contact-us' onClick={onClose}>
+                      <Text fontWeight="medium" color="white">Contact Us</Text>
                     </NavLink>
                   </Box>
                 </VStack>
@@ -102,8 +102,8 @@ function NavBar() {
           </Box>
           {/* Contact */}
           <Box>
-            <NavLink to='/'>
-              <Text fontWeight="medium" color="white" fontSize="lg">Contact</Text>
+            <NavLink to='/contact-us'>
+              <Text fontWeight="medium" color="white" fontSize="lg">Contact Us</Text>
             </NavLink>
           </Box>
           {/* CTA */}
