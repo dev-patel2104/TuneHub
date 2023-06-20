@@ -2,14 +2,14 @@ import {
   ChakraProvider,
   theme
 } from '@chakra-ui/react';
-import { RouterProvider, createBrowserRouter, } from "react-router-dom";
 import React from 'react';
+import { RouterProvider, createBrowserRouter, } from "react-router-dom";
+import Login from './pages/Authentication/Login';
+import ContactUs from './pages/ContactUs/ContactUs';
+import FAQ from './pages/FAQ/FAQ';
+import LandingPage from './pages/LandingPage/LandingPage';
 import LayoutWithNav from './pages/Layout/LayoutWithNav';
 import LayoutWithoutNav from './pages/Layout/LayoutWithoutNav';
-import LandingPage from './pages/LandingPage/LandingPage';
-import Login from './pages/Authentication/Login';
-import FAQ from './pages/FAQ/FAQ';
-import ContactUs from './pages/ContactUs/ContactUs';
 
 const router = createBrowserRouter([
   {

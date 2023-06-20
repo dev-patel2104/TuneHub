@@ -1,8 +1,8 @@
-import { Box, Button, Flex, HStack, Text, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, IconButton, useDisclosure, VStack } from '@chakra-ui/react';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, HStack, IconButton, Text, VStack, useDisclosure } from '@chakra-ui/react';
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { NavLink } from 'react-router-dom';
 
 
 function NavBar() {
@@ -18,7 +18,7 @@ function NavBar() {
         </NavLink>
         <Box>
           <IconButton
-            icon={<HamburgerIcon color="white" />}
+            icon={<HamburgerIcon color="white" boxSize="4vh"/>}
             variant="ghost"
             onClick={onOpen}
             aria-label="Open Menu"
@@ -34,31 +34,31 @@ function NavBar() {
                 <VStack gap="12px">
                   {/* Home */}
                   <Box>
-                    <NavLink to='/'>
+                    <NavLink to='/' onClick={onClose}>
                       <Text fontWeight="medium" color="white">Home</Text>
                     </NavLink>
                   </Box>
                   {/* Features */}
                   <Box>
-                    <NavLink to='/'>
-                      <Text fontWeight="medium" color="white">Features</Text>
+                    <NavLink to='/' onClick={onClose}>
+                      <Text fontWeight="medium" color="white" >Features</Text>
                     </NavLink>
                   </Box>
                   {/* About Us */}
                   <Box>
-                    <NavLink to='/'>
+                    <NavLink to='/about-us' onClick={onClose}>
                       <Text fontWeight="medium" color="white">About Us</Text>
                     </NavLink>
                   </Box>
                   {/* News */}
                   <Box>
-                    <NavLink to='/'>
-                      <Text fontWeight="medium" color="white">News</Text>
+                    <NavLink to='/faq' onClick={onClose}>
+                      <Text fontWeight="medium" color="white">FAQs</Text>
                     </NavLink>
                   </Box>
                   {/* Contact */}
                   <Box>
-                    <NavLink to='/'>
+                    <NavLink to='/' onClick={onClose}>
                       <Text fontWeight="medium" color="white">Contact</Text>
                     </NavLink>
                   </Box>
@@ -81,36 +81,36 @@ function NavBar() {
           {/* Home */}
           <Box>
             <NavLink to='/'>
-              <Text fontWeight="medium" color="white">Home</Text>
+              <Text fontWeight="medium" color="white" fontSize="lg">Home</Text>
             </NavLink>
           </Box>
           {/* Features */}
           <Box>
             <NavLink to='/'>
-              <Text fontWeight="medium" color="white">Features</Text>
+              <Text fontWeight="medium" color="white" fontSize="lg">Features</Text>
             </NavLink>
           </Box>
           {/* About Us */}
           <Box>
-            <NavLink to='/'>
-              <Text fontWeight="medium" color="white">About Us</Text>
+            <NavLink to='/about-us'>
+              <Text fontWeight="medium" color="white" fontSize="lg">About Us</Text>
             </NavLink>
           </Box>
           {/* News */}
           <Box>
-            <NavLink to='/'>
-              <Text fontWeight="medium" color="white">News</Text>
+            <NavLink to='/faq'>
+              <Text fontWeight="medium" color="white" fontSize="lg">FAQs</Text>
             </NavLink>
           </Box>
           {/* Contact */}
           <Box>
             <NavLink to='/'>
-              <Text fontWeight="medium" color="white">Contact</Text>
+              <Text fontWeight="medium" color="white" fontSize="lg">Contact</Text>
             </NavLink>
           </Box>
           {/* CTA */}
           <NavLink to='/'>
-            <Button fontWeight="medium" colorScheme="teal" variant="solid">Sign In/Up</Button>
+            <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>
           </NavLink>
         </HStack>
       </Flex>
