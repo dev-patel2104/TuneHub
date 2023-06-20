@@ -70,6 +70,7 @@ function ContactUs() {
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
+                backgroundColor:"teal"
             })
         }
     };
@@ -182,7 +183,7 @@ function ContactUs() {
                 </Flex>
                 {/* Form fold */}
                 <Flex width="40%" justifyContent="center" alignItems="center">
-                    <Flex backgroundColor="#050A30" w="80%" minHeight="48vh" borderRadius="10px" justifyContent="center">
+                    <Flex backgroundColor="#050A30" w="80%" minHeight="24vh" borderRadius="10px" justifyContent="center">
                         <VStack w="90%" gap="8px" mt="16px">
                             <FormControl isRequired isInvalid={nameError}>
                                 <FormLabel color="white">Name</FormLabel>
