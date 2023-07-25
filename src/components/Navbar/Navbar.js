@@ -107,7 +107,7 @@ function NavBar() {
             </NavLink>
           </Box>
           {/* CTA */}
-          <NavLink to='/'>
+          <NavLink to='/user/login'>
             <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>
           </NavLink>
         </HStack>
