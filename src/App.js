@@ -11,6 +11,12 @@ import FAQ from './pages/FAQ/FAQ';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LayoutWithNav from './pages/Layout/LayoutWithNav';
 import LayoutWithoutNav from './pages/Layout/LayoutWithoutNav';
+import Quiz from './pages/Trivia/quiz';
+import Leaderboard from './pages/Trivia/Leaderboard';
+import SpotifyContainer from './pages/SpotifyIntegration/SpotifyContainer';
+import SpotifyTopSongs from './pages/SpotifyIntegration/SpotifyTopSongs';
+import SpotifyArtists from './pages/SpotifyIntegration/SpotifyArtists';
+import SpotifyRecentlyPlayed from './pages/SpotifyIntegration/SpotifyRecentlyPlayed';
 
 const router = createBrowserRouter([
   {
@@ -22,15 +28,39 @@ const router = createBrowserRouter([
       },
       {
         path: "/faq",
-        element: <FAQ/>
+        element: <FAQ />
       },
       {
         path: "/about-us",
         element: <AboutUs />
       },
       {
-        path:"/contact-us",
-        element: <ContactUs/>
+        path: "/contact-us",
+        element: <ContactUs />
+      },
+      {
+        path: "/quiz",
+        element: <Quiz />
+      },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard />
+      },
+      {
+        path: "/spotify",
+        element: <SpotifyContainer />
+      },
+      {
+        path: "/spotify/top-songs",
+        element: <SpotifyTopSongs />
+      },
+      {
+        path: "/spotify/top-artists",
+        element: <SpotifyArtists />
+      },
+      {
+        path: "/spotify/recently-played",
+        element: <SpotifyRecentlyPlayed />
       }
     ]
   },
