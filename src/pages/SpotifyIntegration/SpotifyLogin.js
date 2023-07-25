@@ -11,7 +11,7 @@ function SpotifyLogin() {
             <img src={SpotifyLogo} />
             <Text fontSize="xl" fontWeight="medium" color="white" mt="24px">Connect with Spotify to unlock your Spotify Dashboard</Text>
             <Button variant="solid" colorScheme='teal' mt="32px">
-                <a href="http://localhost:5000/spotify/login">Login to Spotify</a>
+                <a href="https://tunehub-server.onrender.com/spotify/login">Login to Spotify</a>
             </Button>
         </Flex>
     );
