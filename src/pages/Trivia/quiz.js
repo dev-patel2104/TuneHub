@@ -1,10 +1,10 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import React from "react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 
 // Placeholder images for the quiz
-import quizImage1 from '../../assets/icon_insta_white.svg';
-import quizImage2 from '../../assets/icon_twitter_white.svg';
+// import quizImage1 from '../../assets/icon_insta_white.svg';
+// import quizImage2 from '../../assets/icon_twitter_white.svg';
 
 function Quiz() {
     // const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
