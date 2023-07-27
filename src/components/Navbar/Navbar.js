@@ -9,7 +9,7 @@ import Logo from '../../assets/tunehub.svg';
 function NavBar() {
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const userid = window.localStorage.getItem('id');
+  // const userid = window.localStorage.getItem('id');
 
 
   return (
@@ -139,9 +139,9 @@ function NavBar() {
             </NavLink>
           </Box>
           {/* CTA */}
-          {userid ? <NavLink to='/user/login'>
+          <NavLink to='/user/login'>
             <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>
-          </NavLink> : null}
+          </NavLink> 
         </HStack>
       </Flex>
   );
