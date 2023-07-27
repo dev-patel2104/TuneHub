@@ -29,6 +29,7 @@ function LoadList({ songList, changedData, isMobile }) {
   }
 
   return (
+
     // Display song list in a vertical stack
     isMobile ? (
       <VStack spacing="36px" mt="72px" alignItems="stretch" width="90%">
@@ -63,7 +64,7 @@ function SongPage() {
   const [filteredData, setFilteredData] = useState('');
   const [genreList, setGenreList] = useState([]);
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("false");
 
   // Function to fetch all songs from the API and set initial state
   const getSongList = async () => {
@@ -122,11 +123,15 @@ function SongPage() {
   // Fetch data from the API and set initial state on component mount
   useEffect(() => {
     // Fetch data from the API on localhost:8080
-    setLoading(true);
-    getSongList();
-    getGenreList();
-    setFilteredData(songList);
-    setLoading(false);
+    const fetchData = async () => {
+      setLoading("true");
+      await getSongList();
+      await getGenreList();
+      setFilteredData(songList);
+      setLoading("false");
+    };
+    fetchData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
