@@ -1,7 +1,7 @@
 export const getAllSongs = async () => {
     try
     {
-        const response = await fetch('http://https://tunehub-server.onrender.com/songs');
+        const response = await fetch('https://tunehub-server.onrender.com/songs');
         const data = await response.json();
         return data;
     }
@@ -16,7 +16,7 @@ export const getAllSongs = async () => {
 export const getAllGenres = async () => {
     try
     {
-        const response = await fetch('http://https://tunehub-server.onrender.com/genre');
+        const response = await fetch('https://tunehub-server.onrender.com/genre');
         const data = await response.json();
         return data;
     }

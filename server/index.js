@@ -25,8 +25,8 @@ const uri = process.env.URI;
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-let REDIRECT_URI = process.env.REDIRECT_URI || 'http://https://tunehub-server.onrender.com/callback';
-let FRONTEND_URI = process.env.FRONTEND_URI || 'https://tune-hub.netlify.app/';
+let REDIRECT_URI = process.env.REDIRECT_URI || 'https://tunehub-server.onrender.com/callback';
+let FRONTEND_URI = process.env.FRONTEND_URI || 'https://tune-hub.netlify.app';
 
 //json parser, limit set to 30 MB for image transfer
 app.use(express.json({

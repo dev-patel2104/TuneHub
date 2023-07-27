@@ -15,7 +15,7 @@ const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
-    const response = await fetch(`http://https://tunehub-server.onrender.com/spotify/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const response = await fetch(`https://tunehub-server.onrender.com/spotify/refresh_token?refresh_token=${getLocalRefreshToken()}`);
     const data = await response.json();
     const { access_token } = data;
     setLocalAccessToken(access_token);

@@ -7,7 +7,7 @@ export const getSong = async (songID) => {
     }
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/song/${songID}`, options);
+        const response = await fetch(`https://tunehub-server.onrender.com/song/${songID}`, options);
 
         const data = await response.json();
         return data;

@@ -47,7 +47,7 @@ export default function Register() {
     if (password === cpassword) {
       if (password.length >= 8) {
         try {
-          const response = await fetch('http://https://tunehub-server.onrender.com/users/register', {
+          const response = await fetch('https://tunehub-server.onrender.com/users/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

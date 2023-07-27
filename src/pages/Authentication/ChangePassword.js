@@ -44,7 +44,7 @@ export default function ChangePassword() {
 
       } else {
         try {
-          const response = await fetch(`http://https://tunehub-server.onrender.com/users/changePassword/${email}`, {
+          const response = await fetch(`https://tunehub-server.onrender.com/users/changePassword/${email}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

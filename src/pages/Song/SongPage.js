@@ -49,7 +49,7 @@ function SongPage() {
 
                     {/* Photo */}
                     <Flex minH="30vh" flexDirection="column" minW="30vh" maxH="30vh" maxW="30vh" mt="5vh">
-                        <Image src={image1} alt="Song Image" maxHeight="40vh" w="30vh" objectFit="cover" />
+                        <Image src={song.image ?? image1} alt="Song Image" maxHeight="40vh" w="30vh" objectFit="cover" />
                     </Flex>
                     {/* Song details */}
 
@@ -82,7 +82,7 @@ function SongPage() {
                     <Flex mt="64px">
                         {/* Photo */}
                         <Flex minH="30vh" minW="30vh" maxH="30vh" maxW="30vh">
-                            <Image src={image1} alt="Song Image" maxHeight="40vh" w="30vh" objectFit="cover" />
+                            <Image src={song.image ?? image1} alt="Song Image" maxHeight="40vh" w="30vh" objectFit="cover" />
                         </Flex>
                         {/* Song details */}
                         <Flex minH="30vh" flexDirection="column" justifyContent="end" ml="32px">

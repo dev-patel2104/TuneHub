@@ -37,7 +37,7 @@ export default function Login() {
     setIsLoading(true);
     try {
       // Fetch the latest response by using await before each API call
-      const loginResponse = await fetch('http://https://tunehub-server.onrender.com/users/login', {
+      const loginResponse = await fetch('https://tunehub-server.onrender.com/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

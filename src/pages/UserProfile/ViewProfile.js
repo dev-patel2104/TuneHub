@@ -81,7 +81,7 @@ export default function CustomerProfile() {
 
     try {
       // Make the API call to update the user data
-      const response = await fetch(`http://https://tunehub-server.onrender.com/users/edit/${user.id}`, {
+      const response = await fetch(`https://tunehub-server.onrender.com/users/edit/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export default function CustomerProfile() {
 
   const handleDeleteClick = async () => {
     try {
-      const response = await fetch(`http://https://tunehub-server.onrender.com/users/delete/${user.id}`, {
+      const response = await fetch(`https://tunehub-server.onrender.com/users/delete/${user.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -14,7 +14,7 @@ function SpotifyLogin() {
                 <img src={SpotifyLogo} alt='Spotify' />
                 <Text fontSize="xl" fontWeight="medium" color="white" mt="24px" textAlign="center" mr="8px" ml="8px">Connect with Spotify to unlock your Spotify Dashboard</Text>
                 <Button variant="solid" colorScheme='teal' mt="32px">
-                    <a href="http://https://tunehub-server.onrender.com/spotify/login">Login to Spotify</a>
+                    <a href="https://tunehub-server.onrender.com/spotify/login">Login to Spotify</a>
                 </Button>
             </Flex>
             :
@@ -23,7 +23,7 @@ function SpotifyLogin() {
                 <img src={SpotifyLogo} alt='Spotify' />
                 <Text fontSize="xl" fontWeight="medium" color="white" mt="24px">Connect with Spotify to unlock your Spotify Dashboard</Text>
                 <Button variant="solid" colorScheme='teal' mt="32px">
-                    <a href="http://https://tunehub-server.onrender.com/spotify/login">Login to Spotify</a>
+                    <a href="https://tunehub-server.onrender.com/spotify/login">Login to Spotify</a>
                 </Button>
             </Flex>
     );

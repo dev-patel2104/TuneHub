@@ -1,4 +1,11 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Box,
   Button,
   Center,
   CloseButton,
@@ -8,18 +15,12 @@ import {
   FormLabel,
   HStack,
   Input,
+  Text,
   VStack,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  useToast,Box,
+  useToast,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { addSong } from '../../services/AdminServices/AdminServices';
-// import { useMediaQuery } from 'react-responsive';
 
 function AddSongForm(props) {
   // State variables for form validation and data
@@ -30,7 +31,6 @@ function AddSongForm(props) {
   const [artists, setArtists] = useState([]);
   const [artistInput, setArtistInput] = useState('');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  // const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
   const [imageFile, setImageFile] = useState(null);
 
   // Handle confirmation for adding the song
@@ -97,7 +97,7 @@ function AddSongForm(props) {
     // Check if the form is valid (all required fields are filled and at least one genre and artist are added)
     setIsFormSubmitted(true);
     const form = event.target;
-    const isValid = form.checkValidity() && genres.length > 0 && artists.length > 0;
+    const isValid = form.checkValidity() && genres.length > 0 && artists.length > 0 && imageFile !== null;
 
     if (isValid) {
       // Open the confirmation dialog
@@ -168,9 +168,6 @@ function AddSongForm(props) {
           {/* Form control for artist */}
           <FormControl>
             <FormLabel color="white">Artist</FormLabel>
-            {isFormSubmitted && artists.length === 0 && (
-              <FormErrorMessage color="white">Please add at least one artist.</FormErrorMessage>
-            )}
             <VStack align="start" spacing="5px" width="100%">
               {/* Display added artists */}
               <Flex wrap="wrap" width="100%" gap="10px">
@@ -195,6 +192,9 @@ function AddSongForm(props) {
                   Add
                 </Button>
               </HStack>
+              {isFormSubmitted && artists.length === 0 ? (
+              <Text color="red">Please add at least one artist.</Text>
+            ) : <></>}
             </VStack>
           </FormControl>
           {/* Form control for song duration */}
@@ -232,10 +232,12 @@ function AddSongForm(props) {
                   Add
                 </Button>
               </HStack>
+              {isFormSubmitted && genres.length === 0 ? (
+              <Text color="red">Please add at least one genre.</Text>
+              
+            ) : <></>}
             </VStack>
-            {isFormSubmitted && genres.length === 0 && (
-              <FormErrorMessage color="white">Please add at least one genre.</FormErrorMessage>
-            )}
+            
           </FormControl>
           {/* Form control for release year */}
           <FormControl isRequired>
@@ -279,7 +281,7 @@ function AddSongForm(props) {
               </Box>
             )}
           </Box>
-          {isFormSubmitted && !imageFile && <FormErrorMessage color="white">Please select an image.</FormErrorMessage>}
+          {isFormSubmitted && !imageFile ? (<Text color="red">Please select an image.</Text>) : <></>}
         </FormControl>
           {/* Submit button */}
           <Center>

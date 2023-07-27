@@ -8,7 +8,7 @@ export const addToFavorites = async (userID, songID) => {
     }
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/favorites/${userID}`, options);
+        const response = await fetch(`https://tunehub-server.onrender.com/favorites/${userID}`, options);
 
         const data = await response.json();
         return data;
@@ -28,7 +28,7 @@ export const deleteFromFavorites = async (userID, songID) => {
     }
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/favorites/${userID}`, options);
+        const response = await fetch(`https://tunehub-server.onrender.com/favorites/${userID}`, options);
 
         const data = await response.json();
         return data;
@@ -47,7 +47,7 @@ export const getFavorites = async (userID) => {
     }
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/favorites/${userID}`, options);
+        const response = await fetch(`https://tunehub-server.onrender.com/favorites/${userID}`, options);
 
         const data = await response.json();
         return data;
@@ -67,7 +67,7 @@ export const isFavorite = async (userID, songID) => {
     }
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/favorites/${userID}/isFav`, options);
+        const response = await fetch(`https://tunehub-server.onrender.com/favorites/${userID}/isFav`, options);
 
         const data = await response.json();
         return data;

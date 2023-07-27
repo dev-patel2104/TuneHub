@@ -3,13 +3,17 @@ const reviewController = require('../controllers/review.js');
 
 const router = express.Router();
 
-// adding review for a song
+// Route to add a new review for a song
 router.patch('/add/:id', reviewController.addReview);
 
+// Route to edit an existing review for a song
 router.patch('/edit/:id', reviewController.editReview);
 
+// Route to remove a review for a song
 router.delete('/delete/:id', reviewController.removeReview);
 
+// Route to get all reviews for a song by its ID
 router.get('/reviews/:id', reviewController.getReviews);
 
+// Export the router to be used in the main app
 module.exports = router;

@@ -2,7 +2,7 @@
 export const fetchArtistById = async (id) => {
 
     try {
-        const response = await fetch(`http://https://tunehub-server.onrender.com/artist/${id}`);
+        const response = await fetch(`https://tunehub-server.onrender.com/artist/${id}`);
 
         const data = await response.json();
         return data;
@@ -14,7 +14,7 @@ export const fetchArtistById = async (id) => {
 
 export const getAllSongs = async () => {
     try {
-        const response = await fetch('http://https://tunehub-server.onrender.com/songs');
+        const response = await fetch('https://tunehub-server.onrender.com/songs');
         const data = await response.json();
         return data;
     }
@@ -34,7 +34,7 @@ export const deleteSong = async (id) => {
             }
         }
 
-        const response = await fetch(`http://https://tunehub-server.onrender.com/delete/song/${id}`, deleteOptions);
+        const response = await fetch(`https://tunehub-server.onrender.com/delete/song/${id}`, deleteOptions);
         const data = await response.json();
         return data;
     }
@@ -54,7 +54,7 @@ export const addSong = async (songData) => {
             body: JSON.stringify(songData)
         }
 
-        const response = await fetch(`http://https://tunehub-server.onrender.com/add/song`, postOptions);
+        const response = await fetch(`https://tunehub-server.onrender.com/add/song`, postOptions);
         const data = await response.json();
         return data;
     }
