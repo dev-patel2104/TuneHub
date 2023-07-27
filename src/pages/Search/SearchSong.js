@@ -127,7 +127,7 @@ function SongPage() {
       setLoading("true");
       await getSongList();
       await getGenreList();
-      setFilteredData(songList);
+     
       setLoading("false");
     };
     fetchData();
