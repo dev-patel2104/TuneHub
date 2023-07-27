@@ -1,14 +1,15 @@
 import {
   Button,
-  CircularProgress,
   Flex,
   FormControl,
+  Heading,
   Input,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  VStack
+  VStack,
+  CircularProgress
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -24,9 +25,7 @@ function LoadList({ songList, changedData, isMobile }) {
 
   // Display a message if no songs exist or no search results are found
   if (changedData.length === 0) {
-    return <Flex w="100%" backgroundColor="#000C66" minHeight="90vh" flexDirection="column" alignItems="center" justifyContent="center">
-      <CircularProgress isIndeterminate color="teal" />
-    </Flex>;
+    return <Heading color="white" mt="100px"> No such song exists </Heading>;
   }
 
   return (
@@ -64,6 +63,7 @@ function SongPage() {
   const [filteredData, setFilteredData] = useState('');
   const [genreList, setGenreList] = useState([]);
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
+  const [loading, setLoading] = useState(false);
 
   // Function to fetch all songs from the API and set initial state
   const getSongList = async () => {
@@ -122,104 +122,110 @@ function SongPage() {
   // Fetch data from the API and set initial state on component mount
   useEffect(() => {
     // Fetch data from the API on localhost:8080
+    setLoading(true);
     getSongList();
     getGenreList();
     setFilteredData(songList);
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    // Conditional rendering based on the device screen width
-    isMobile ? (
-      <Flex backgroundColor="#000C66" minH="90vh" overflow="hidden" width="100%" alignItems="center" flexDirection="column">
-        {/* Search input and genre selection */}
-        <Flex borderColor="gray.500" mt="60px" width="80%" gap="20px" flexDirection="row">
-          <Input
-            width="100%"
-            color="white"
-            placeholder="Search for song"
-            size="md"
-            borderColor="teal.100"
-            focusBorderColor="white"
-            value={searchVal}
-            onChange={searchHandler}
-          />
-          <FormControl width="auto">
-            <Menu>
-              <MenuButton as={Button} colorScheme="teal" color="white">
-                {selectedGenre ? selectedGenre.name : 'Select genre'}
-              </MenuButton>
-              <MenuList bg="#000C66" borderColor="gray.500">
-                {/* Add options for each genre */}
-                {genreList.map((genre) => (
-                  <MenuItem
-                    bg="#000C66"
-                    _hover={{ bg: '#050A30', color: 'white' }}
-                    _focus={{ bg: '#050A30', color: 'white' }}
-                    _active={{ bg: '#050A30', color: 'white' }}
-                    color="white"
-                    key={genre.id}
-                    onClick={() => handleGenreChange(genre)}
-                  >
-                    {genre.name}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </FormControl>
-        </Flex>
+    loading === "true" ?
+      <Flex w="100%" backgroundColor="#000C66" minHeight="90vh" flexDirection="column" alignItems="center" justifyContent="center">
+        <CircularProgress isIndeterminate color="teal" />
+      </Flex> :
+      // Conditional rendering based on the device screen width
+      isMobile ? (
+        <Flex backgroundColor="#000C66" minH="90vh" overflow="hidden" width="100%" alignItems="center" flexDirection="column">
+          {/* Search input and genre selection */}
+          <Flex borderColor="gray.500" mt="60px" width="80%" gap="20px" flexDirection="row">
+            <Input
+              width="100%"
+              color="white"
+              placeholder="Search for song"
+              size="md"
+              borderColor="teal.100"
+              focusBorderColor="white"
+              value={searchVal}
+              onChange={searchHandler}
+            />
+            <FormControl width="auto">
+              <Menu>
+                <MenuButton as={Button} colorScheme="teal" color="white">
+                  {selectedGenre ? selectedGenre.name : 'Select genre'}
+                </MenuButton>
+                <MenuList bg="#000C66" borderColor="gray.500">
+                  {/* Add options for each genre */}
+                  {genreList.map((genre) => (
+                    <MenuItem
+                      bg="#000C66"
+                      _hover={{ bg: '#050A30', color: 'white' }}
+                      _focus={{ bg: '#050A30', color: 'white' }}
+                      _active={{ bg: '#050A30', color: 'white' }}
+                      color="white"
+                      key={genre.id}
+                      onClick={() => handleGenreChange(genre)}
+                    >
+                      {genre.name}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
+            </FormControl>
+          </Flex>
 
-        {/* Song list */}
-        <Flex width="100%" justifyContent="center" mt="20px">
-          <LoadList songList={songList} changedData={changedData} isMobile={true} />
+          {/* Song list */}
+          <Flex width="100%" justifyContent="center" mt="20px">
+            <LoadList songList={songList} changedData={changedData} isMobile={true} />
+          </Flex>
         </Flex>
-      </Flex>
-    ) : (
-      <Flex backgroundColor="#000C66" minH="90vh" width="100%" alignItems="center" flexDirection="column">
-        {/* Search input and genre selection */}
-        <Flex borderColor="gray.500" mt="60px" width="1080px" gap="20px" flexDirection="row">
-          <Input
-            width="100%"
-            color="white"
-            placeholder="Search for song"
-            size="md"
-            ml="20px"
-            borderColor="teal.100"
-            focusBorderColor="white"
-            value={searchVal}
-            onChange={searchHandler}
-          />
-          <FormControl width="15%">
-            <Menu>
-              <MenuButton as={Button} colorScheme="teal" color="white">
-                {selectedGenre ? selectedGenre.name : 'Select genre'}
-              </MenuButton>
-              <MenuList bg="#000C66" borderColor="gray.500">
-                {/* Add options for each genre */}
-                {genreList.map((genre) => (
-                  <MenuItem
-                    bg="#000C66"
-                    _hover={{ bg: '#050A30', color: 'white' }}
-                    _focus={{ bg: '#050A30', color: 'white' }}
-                    _active={{ bg: '#050A30', color: 'white' }}
-                    color="white"
-                    key={genre.id}
-                    onClick={() => handleGenreChange(genre)}
-                  >
-                    {genre.name}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </FormControl>
-        </Flex>
+      ) : (
+        <Flex backgroundColor="#000C66" minH="90vh" width="100%" alignItems="center" flexDirection="column">
+          {/* Search input and genre selection */}
+          <Flex borderColor="gray.500" mt="60px" width="1080px" gap="20px" flexDirection="row">
+            <Input
+              width="100%"
+              color="white"
+              placeholder="Search for song"
+              size="md"
+              ml="20px"
+              borderColor="teal.100"
+              focusBorderColor="white"
+              value={searchVal}
+              onChange={searchHandler}
+            />
+            <FormControl width="15%">
+              <Menu>
+                <MenuButton as={Button} colorScheme="teal" color="white">
+                  {selectedGenre ? selectedGenre.name : 'Select genre'}
+                </MenuButton>
+                <MenuList bg="#000C66" borderColor="gray.500">
+                  {/* Add options for each genre */}
+                  {genreList.map((genre) => (
+                    <MenuItem
+                      bg="#000C66"
+                      _hover={{ bg: '#050A30', color: 'white' }}
+                      _focus={{ bg: '#050A30', color: 'white' }}
+                      _active={{ bg: '#050A30', color: 'white' }}
+                      color="white"
+                      key={genre.id}
+                      onClick={() => handleGenreChange(genre)}
+                    >
+                      {genre.name}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
+            </FormControl>
+          </Flex>
 
-        {/* Loads all the songs retrieved from the database */}
-        <Flex width="1070px" justifyContent="center">
-          <LoadList songList={songList} changedData={changedData} isMobile={false} />
+          {/* Loads all the songs retrieved from the database */}
+          <Flex width="1070px" justifyContent="center">
+            <LoadList songList={songList} changedData={changedData} isMobile={false} />
+          </Flex>
         </Flex>
-      </Flex>
-    )
+      )
   );
 }
 
