@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import LeaderboardSVG from '../../assets/learderboard.svg';
-import { fetchLeaderboardData, submitScore } from '../../services/TriviaServices/LeaderboardServices';
+import { fetchLeaderboardData } from '../../services/TriviaServices/LeaderboardServices';
 
 
 function Leaderboard() {

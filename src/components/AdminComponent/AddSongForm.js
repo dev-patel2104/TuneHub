@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { addSong } from '../../services/AdminServices/AdminServices';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 function AddSongForm(props) {
   // State variables for form validation and data
@@ -30,7 +30,7 @@ function AddSongForm(props) {
   const [artists, setArtists] = useState([]);
   const [artistInput, setArtistInput] = useState('');
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
+  // const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
   const [imageFile, setImageFile] = useState(null);
 
   // Handle confirmation for adding the song

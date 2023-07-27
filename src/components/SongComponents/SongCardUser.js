@@ -1,31 +1,26 @@
-import { CloseIcon, ViewIcon } from "@chakra-ui/icons";
 import {
-    Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, HStack, Icon, Image, Spacer, Text, VStack, useToast, AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
-    AlertDialogOverlay,
+    Box,
+    Flex,
+    Image,
+    Text
 } from '@chakra-ui/react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 import image1 from '../../assets/image1.jpg';
-import { deleteSong } from '../../services/AdminServices/AdminServices.js'
 
 function SongCardUser(props) {
 
     const responsiveHeadText = { base: '12px', md: '16px' };
     const responsiveBodyText = { base: '10px', md: '14px' };
-    const responsiveIcon = { base: '4', md: '5' };
 
-    const [isAlertOpen, setIsAlertOpen] = useState(false);
+
+  
     // Function to determine if the image is an SVG
     const isSVGImage = (url) => {
         return url.toLowerCase().endsWith('.svg');
     };
 
-    const { id, name, artist, duration } = props;
+    const { name, artist, duration } = props;
     const formattedArtists = Array.isArray(artist) ? artist.join(', ') : artist;
     //console.log("id", id);
     return (
