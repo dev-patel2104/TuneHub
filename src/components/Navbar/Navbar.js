@@ -9,17 +9,19 @@ import Logo from '../../assets/tunehub.svg';
 function NavBar() {
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const userid = window.localStorage.getItem('id');
+
 
   return (
     isMobile ?
       <Flex as="nav" alignItems="center" justify="space-between" h="10vh" w="100%" backgroundColor="#050A30">
         {/* Logo */}
         <NavLink to="/">
-        <Image src={Logo} alt="TuneHub" width="96px" ml="16px"/>
+          <Image src={Logo} alt="TuneHub" width="96px" ml="16px" />
         </NavLink>
         <Box>
           <IconButton
-            icon={<HamburgerIcon color="white" boxSize="4vh"/>}
+            icon={<HamburgerIcon color="white" boxSize="4vh" />}
             variant="ghost"
             onClick={onOpen}
             aria-label="Open Menu"
@@ -27,9 +29,9 @@ function NavBar() {
           />
 
           <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-            <DrawerOverlay/>
+            <DrawerOverlay />
             <DrawerContent backgroundColor="#050A30">
-              <DrawerCloseButton color="white"/>
+              <DrawerCloseButton color="white" />
               <DrawerHeader color="white" align="center">TuneHub</DrawerHeader>
               <DrawerBody>
                 <VStack gap="12px">
@@ -43,6 +45,21 @@ function NavBar() {
                   <Box>
                     <NavLink to='/spotify' onClick={onClose}>
                       <Text fontWeight="medium" color="white" >My Spotify</Text>
+                    </NavLink>
+                  </Box>
+                  <Box>
+                    <NavLink to='/my-favorites' onClick={onClose}>
+                      <Text fontWeight="medium" color="white" >My Favorites</Text>
+                    </NavLink>
+                  </Box>
+                  <Box>
+                    <NavLink to='/trivia' onClick={onClose}>
+                      <Text fontWeight="medium" color="white" >Trivia</Text>
+                    </NavLink>
+                  </Box>
+                  <Box>
+                    <NavLink to='/search/song' onClick={onClose}>
+                      <Text fontWeight="medium" color="white" >Search song</Text>
                     </NavLink>
                   </Box>
                   {/* About Us */}
@@ -73,7 +90,7 @@ function NavBar() {
       <Flex as="nav" alignItems="center" justify="space-between" h="10vh" w="100%" backgroundColor="#050A30">
         {/* Logo */}
         <NavLink to="/">
-            <Image src={Logo} alt="TuneHub" width="128px" ml="16px"/>
+          <Image src={Logo} alt="TuneHub" width="128px" ml="16px" />
         </NavLink>
         <HStack gap="24px" mr="40px">
           {/* Home */}
@@ -86,6 +103,21 @@ function NavBar() {
           <Box>
             <NavLink to='/spotify'>
               <Text fontWeight="medium" color="white" fontSize="lg">My Spotify</Text>
+            </NavLink>
+          </Box>
+          <Box>
+            <NavLink to='/my-favorites'>
+              <Text fontWeight="medium" color="white" fontSize="lg">My Favorites</Text>
+            </NavLink>
+          </Box>
+          <Box>
+            <NavLink to='/trivia'>
+              <Text fontWeight="medium" color="white" fontSize="lg">Trivia</Text>
+            </NavLink>
+          </Box>
+          <Box>
+            <NavLink to='/search/song'>
+              <Text fontWeight="medium" color="white" fontSize="lg">Search songs</Text>
             </NavLink>
           </Box>
           {/* About Us */}
@@ -107,9 +139,9 @@ function NavBar() {
             </NavLink>
           </Box>
           {/* CTA */}
-          <NavLink to='/user/login'>
+          {userid ? <NavLink to='/user/login'>
             <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>
-          </NavLink>
+          </NavLink> : null}
         </HStack>
       </Flex>
   );

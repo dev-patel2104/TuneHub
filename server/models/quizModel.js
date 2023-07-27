@@ -12,6 +12,5 @@ const quizQuestionSchema = new mongoose.Schema({
 
 
 const QuizQuestion = mongoose.model('Trivia', quizQuestionSchema,'Trivia');
-console.log(QuizQuestion)
 
 module.exports = QuizQuestion;

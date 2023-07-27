@@ -15,7 +15,7 @@ const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
-    const response = await fetch(`https://tunehub-server.onrender.com/spotify/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const response = await fetch(`http://https://tunehub-server.onrender.com/spotify/refresh_token?refresh_token=${getLocalRefreshToken()}`);
     const data = await response.json();
     const { access_token } = data;
     setLocalAccessToken(access_token);
@@ -153,76 +153,6 @@ export const getArtist = artistId =>
     headers: getHeadersWithToken(),
   });
 
-/**
- * Follow an Artist
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
- */
-export const followArtist = artistId => {
-  const url = `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`;
-  return fetchData(url, {
-    method: 'put',
-    headers: getHeadersWithToken(),
-  });
-};
-
-/**
- * Check if Current User Follows Artists
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
- */
-export const doesUserFollowArtist = artistId =>
-  fetchData(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${artistId}`, {
-    headers: getHeadersWithToken(),
-  });
-
-/**
- * Check if Users Follow a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
- */
-export const doesUserFollowPlaylist = (playlistId, userId) =>
-  fetchData(`https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${userId}`, {
-    headers: getHeadersWithToken(),
-  });
-
-/**
- * Create a Playlist (The playlist will be empty until you add tracks)
- * https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
- */
-export const createPlaylist = (userId, name) => {
-  const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
-  const data = JSON.stringify({ name });
-  return fetchData(url, {
-    method: 'post',
-    headers: {
-      ...getHeadersWithToken(),
-      'Content-Type': 'application/json',
-    },
-    body: data,
-  });
-};
-
-/**
- * Add Tracks to a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
- */
-export const addTracksToPlaylist = (playlistId, uris) => {
-  const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`;
-  return fetchData(url, {
-    method: 'post',
-    headers: getHeadersWithToken(),
-  });
-};
-
-/**
- * Follow a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
- */
-export const followPlaylist = playlistId => {
-  const url = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
-  return fetchData(url, {
-    method: 'put',
-    headers: getHeadersWithToken(),
-  });
-};
 
 /**
  * Get a Playlist
@@ -242,39 +172,6 @@ export const getPlaylistTracks = playlistId =>
     headers: getHeadersWithToken(),
   });
 
-/**
- * Return a comma-separated string of track IDs from the given array of tracks
- */
-const getTrackIds = tracks => tracks.map(({ track }) => track.id).join(',');
-
-/**
- * Get Audio Features for Several Tracks
- * https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/
- */
-export const getAudioFeaturesForTracks = tracks => {
-  const ids = getTrackIds(tracks);
-  return fetchData(`https://api.spotify.com/v1/audio-features?ids=${ids}`, {
-    headers: getHeadersWithToken(),
-  });
-};
-
-/**
- * Get Recommendations Based on Seeds
- * https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/
- */
-export const getRecommendationsForTracks = tracks => {
-  const shuffledTracks = tracks.sort(() => 0.5 - Math.random());
-  const seed_tracks = getTrackIds(shuffledTracks.slice(0, 5));
-  const seed_artists = '';
-  const seed_genres = '';
-
-  return fetchData(
-    `https://api.spotify.com/v1/recommendations?seed_tracks=${seed_tracks}&seed_artists=${seed_artists}&seed_genres=${seed_genres}`,
-    {
-      headers: getHeadersWithToken(),
-    },
-  );
-};
 
 /**
  * Get a Track
@@ -285,65 +182,25 @@ export const getTrack = trackId =>
     headers: getHeadersWithToken(),
   });
 
-/**
- * Get Audio Analysis for a Track
- * https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/
- */
-export const getTrackAudioAnalysis = trackId =>
-  fetchData(`https://api.spotify.com/v1/audio-analysis/${trackId}`, {
-    headers: getHeadersWithToken(),
-  });
+export const getUserInfo = async () => {
+  try {
+    const [userData, followedArtistsData, playlistsData, topArtistsData, topTracksData] = await Promise.all([
+      getUser(),
+      getFollowing(),
+      getPlaylists(),
+      getTopArtistsLong(),
+      getTopTracksLong()
+    ]);
 
-/**
- * Get Audio Features for a Track
- * https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
- */
-export const getTrackAudioFeatures = trackId =>
-  fetchData(`https://api.spotify.com/v1/audio-features/${trackId}`, {
-    headers: getHeadersWithToken(),
-  });
-
-  export const getUserInfo = async () => {
-    try {
-      const [userData, followedArtistsData, playlistsData, topArtistsData, topTracksData] = await Promise.all([
-        getUser(),
-        getFollowing(),
-        getPlaylists(),
-        getTopArtistsLong(),
-        getTopTracksLong()
-      ]);
-  
-      return {
-        user: userData,
-        followedArtists: followedArtistsData,
-        playlists: playlistsData,
-        topArtists: topArtistsData,
-        topTracks: topTracksData,
-      };
-    } catch (error) {
-      console.error(error);
-      // You can handle errors here as per your application's requirements
-      return null;
-    }
-  };
-  
-  export const getTrackInfo = async (trackId) => {
-    try {
-      const [trackData, audioAnalysisData, audioFeaturesData] = await Promise.all([
-        getTrack(trackId),
-        getTrackAudioAnalysis(trackId),
-        getTrackAudioFeatures(trackId)
-      ]);
-  
-      return {
-        track: trackData,
-        audioAnalysis: audioAnalysisData,
-        audioFeatures: audioFeaturesData,
-      };
-    } catch (error) {
-      console.error(error);
-      // You can handle errors here as per your application's requirements
-      return null;
-    }
-  };
-  
+    return {
+      user: userData,
+      followedArtists: followedArtistsData,
+      playlists: playlistsData,
+      topArtists: topArtistsData,
+      topTracks: topTracksData,
+    };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

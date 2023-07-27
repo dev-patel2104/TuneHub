@@ -1,3 +1,5 @@
+// Author: Kainat Khan
+// Date: July 24, 2023
 import {
   Button,
   Center,
@@ -13,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import ErrorMessage from '../../components/Messages/ErrorMessage';
 
@@ -23,7 +26,7 @@ export default function Register() {
   const [showCPassword, setShowCPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
   const handleShowCClick = () => setShowCPassword(!showCPassword);
-  // --handle submit
+
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -31,30 +34,71 @@ export default function Register() {
   const [cpassword, setCPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const handleSubmit = async event => {
-    // check validations
+
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    navigate('/user/login');
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+
     if (password === cpassword) {
       if (password.length >= 8) {
-        setIsLoading(false);
-        setShowPassword(false);
-        navigate('/user/profile', { state: { firstname: firstname, lastname: lastname, email: email } });
+        try {
+          const response = await fetch('http://https://tunehub-server.onrender.com/users/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: uuidv4(),
+              firstName: firstname,
+              lastName: lastname,
+              email: email,
+              password: password,
+            }),
+          });
+
+          const responseData = await response.json();
+
+          if (response.ok) {
+            const user = responseData.user;
+            setIsLoading(false);
+            setShowPassword(false);
+            // ssetCookie("id", data?.user.id, 7);
+            localStorage.setItem('user', JSON.stringify(user));
+            navigate('/user/profile', { state: { user } });
+          } else {
+            setError('Failed to register. Please try again.');
+            setIsLoading(false);
+            setShowPassword(false);
+          }
+        } catch (error) {
+          console.error('Error while registering:', error);
+          setError('An error occurred. Please try again later.');
+          setIsLoading(false);
+          setShowPassword(false);
+        }
       } else {
-        setError("Password should have minimum 8 characters!")
+        setError('Password should have minimum 8 characters!');
         setIsLoading(false);
         setShowPassword(false);
       }
     } else {
-      setError("Password and Confirm password are not same!")
+      setError('Password and Confirm password do not match!');
       setIsLoading(false);
       setShowPassword(false);
     }
   };
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate('/user/login');
-  };
+
+  // function setCookie(name, value, daysToExpire) {
+  //   const date = new Date();
+  //   date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
+  //   const expires = `expires=${date.toUTCString()}`;
+  //   document.cookie = `${name}=${value};${expires};path=/`;
+  // }
 
   return (
     <Center h="100vh" bg="#000C66">
@@ -142,7 +186,7 @@ export default function Register() {
         </form>
         <Text mt="1rem" textColor="black">
           <span fontColour="white">Already have an account? </span>
-          <Button variant="link" onClick={handleClick}>Sign In</Button>
+          <Button variant="link" onClick={handleLoginClick}>Sign In</Button>
         </Text>
       </Flex>
     </Center>

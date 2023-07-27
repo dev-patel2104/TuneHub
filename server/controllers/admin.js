@@ -3,7 +3,7 @@ const Review = require('../models/reviewModel.js');
 
 exports.addSong = async (req, res) => {
     try {
-        const { id, name, artist, duration, genres, releaseYear, reviews } = req.body;
+        const { id, name, artist, duration, genres, releaseYear, image, reviews } = req.body;
         if (name == null || artist == null || duration == null ||
             name.trim() === '' || artist.length === 0 || duration.trim() === '') {
             return res.status(422).json({ error: "Invalid or empty input data" });
@@ -17,8 +17,9 @@ exports.addSong = async (req, res) => {
             genres,
             releaseYear,
             reviews,
+            image
         })
-
+        console.log(newSong);
         const addedSong = await newSong.save();
 
         return res.status(201).json(addedSong);
@@ -65,11 +66,10 @@ exports.deleteSong = async (req, res) => {
     }
     try {
         await Song.deleteOne({ id: songId });
+        console.log("Inside delete");
         return res.status(200).json({ message: "Song has been successfully removed" });
     }
     catch (error) {
         return res.status(500).json({ error: "Failed to delete the song" });
     }
 }
-
-
