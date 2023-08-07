@@ -14,11 +14,16 @@ function Quiz() {
   const [isQuizEnded, setIsQuizEnded] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-  const userID = 1;
+  const [userID, setUserID] = useState("1");
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
 
 
   useEffect(() => {
+    const userJSON = localStorage.getItem("user");
+        if (userJSON) {
+          const userFromLocalStorage = JSON.parse(userJSON);
+          setUserID(userFromLocalStorage.id);
+        }
     const fetchQuestions = async () => {
       const data = await fetchQuizQuestions();
       setQuestions(data);

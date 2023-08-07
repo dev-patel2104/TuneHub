@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
   favoriteSongs: [{
     type: String
   }],
+  userRole: {
+    type: String
+  }
 }, { collection: 'User' });
 
 // User model

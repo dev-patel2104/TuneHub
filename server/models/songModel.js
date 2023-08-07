@@ -12,7 +12,7 @@ const songSchema = new mongoose.Schema({
   duration: { type: String },
   genres: [{ type: String }],
   releaseYear: { type: Number },
-  reviews: { type: [Review.schema], default: [] }, // Embed the Review schema within the song schema
+  reviews: [{ type: Review.schema, default: [] }], // Embed the Review schema within the song schema
   image: { type: String },
 });
 

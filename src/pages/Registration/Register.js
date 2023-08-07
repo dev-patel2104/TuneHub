@@ -58,6 +58,7 @@ export default function Register() {
               lastName: lastname,
               email: email,
               password: password,
+              userRole: "Member"
             }),
           });
 
@@ -69,7 +70,7 @@ export default function Register() {
             setShowPassword(false);
             // ssetCookie("id", data?.user.id, 7);
             localStorage.setItem('user', JSON.stringify(user));
-            navigate('/user/profile', { state: { user } });
+            navigate('/');
           } else {
             setError('Failed to register. Please try again.');
             setIsLoading(false);

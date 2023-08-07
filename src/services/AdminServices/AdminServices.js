@@ -64,3 +64,24 @@ export const addSong = async (songData) => {
     }
 }
 
+export const addArtist = async (artistData) => {
+    try
+    {
+        const postOperations = {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(artistData)
+        }
+        const response = await fetch('https://tunehub-server.onrender.com/artist/add', postOperations);
+        const data = await response.json();
+        return data;
+    }
+    catch(error)
+    {
+        console.error('Error while adding artist');
+        return null;
+    }
+}
+

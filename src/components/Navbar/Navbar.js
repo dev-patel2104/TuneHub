@@ -2,15 +2,22 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, HStack, IconButton, Text, VStack, useDisclosure, Image } from '@chakra-ui/react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/tunehub.svg';
-
+import { isAdmin } from '../../services/AuthenticationServices/AuthenticationServices';
 
 function NavBar() {
   const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const userid = window.localStorage.getItem('id');
+  const user = localStorage.getItem("user");
+  const navigate = useNavigate();
 
+
+  const handleLogOut = () => {
+    localStorage.setItem("user", "");
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     isMobile ?
@@ -62,6 +69,17 @@ function NavBar() {
                       <Text fontWeight="medium" color="white" >Search song</Text>
                     </NavLink>
                   </Box>
+                  <Box>
+                    <NavLink to='/search/artist' onClick={onClose}>
+                      <Text fontWeight="medium" color="white" >Search artist</Text>
+                    </NavLink>
+                  </Box>
+                  {isAdmin() ?
+                    <Box>
+                      <NavLink to='/admin' onClick={onClose}>
+                        <Text fontWeight="medium" color="white" >Admin Dashboard</Text>
+                      </NavLink>
+                    </Box> : null}
                   {/* About Us */}
                   <Box>
                     <NavLink to='/about-us' onClick={onClose}>
@@ -80,6 +98,9 @@ function NavBar() {
                       <Text fontWeight="medium" color="white">Contact Us</Text>
                     </NavLink>
                   </Box>
+                  {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid">Log Out</Button> : <NavLink to='/user/login'>
+                    <Button fontWeight="medium" colorScheme="teal" variant="solid">Sign In/Up</Button>
+                  </NavLink>}
                 </VStack>
               </DrawerBody>
             </DrawerContent>
@@ -120,6 +141,16 @@ function NavBar() {
               <Text fontWeight="medium" color="white" fontSize="lg">Search songs</Text>
             </NavLink>
           </Box>
+          <Box>
+            <NavLink to='/search/artist'>
+              <Text fontWeight="medium" color="white" fontSize="lg">Search artists</Text>
+            </NavLink>
+          </Box>
+          {isAdmin() ? <Box>
+            <NavLink to='/admin'>
+              <Text fontWeight="medium" color="white" fontSize="lg">Admin Dashboard</Text>
+            </NavLink>
+          </Box> : null}
           {/* About Us */}
           <Box>
             <NavLink to='/about-us'>
@@ -139,9 +170,9 @@ function NavBar() {
             </NavLink>
           </Box>
           {/* CTA */}
-          <NavLink to='/user/login'>
+          {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Log Out</Button> : <NavLink to='/user/login'>
             <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>
-          </NavLink> 
+          </NavLink>}
         </HStack>
       </Flex>
   );

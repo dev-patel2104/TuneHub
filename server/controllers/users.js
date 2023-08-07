@@ -19,7 +19,7 @@ exports.getUsers = async (req, res) => {
 // API to register new user
 exports.registerUser = async (req, res) => {
     const body = req.body;
-    const { id, email, firstName, lastName, password } = req.body;
+    const { id, email, firstName, lastName, password, userRole } = req.body;
       const isNewUserRequestBodyValid = RequestValidator.validateNewUserRequestBody(req.body);
       try {
 
@@ -27,7 +27,7 @@ exports.registerUser = async (req, res) => {
               return res.status(400).json({ success: false, data: "Incorrect Request"});
           }
 
-        const newUser = new Users({ id, email, firstName, lastName, password });
+        const newUser = new Users({ id, email, firstName, lastName, password, userRole });
 
         newUser.save()
           .then((savedUser) => {

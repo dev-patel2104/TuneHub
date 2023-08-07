@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const artistSchema = new mongoose.Schema({
     id: { type: String },
     name: { type: String },
-    genre: { type: Array, default: [] }
+    genre: { type: Array, default: [] },
+    image: {type: String}
 })
 
 // Create the Artist model based on the artist schema

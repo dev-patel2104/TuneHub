@@ -2,18 +2,18 @@ import {
     Center,
     Flex
   } from '@chakra-ui/react';
-  import AddSongForm from '../../components/AdminComponent/AddSongForm.js';
   import LeftSidePanel from '../../components/AdminComponent/AdminSidePanel.js';
   import { useMediaQuery } from 'react-responsive';
+import AddArtistForm from '../../components/AdminComponent/AddArtistForm.js';
   
-  function SongForm() {
-    const tabIndex = 1;
+  function ArtistForm() {
+    const tabIndex = 2;
     const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
     return (
       <>
         {/* Render different layouts based on the screen size */}
         {isMobile ? (
-          <Flex p={0} backgroundColor="#000C66" minW="100vw" minH = "90vh" direction="column">
+          <Flex p={0} backgroundColor="#000C66" minW="100vw" minH = "90vh"  direction="column">
             {/* Set padding to 0 and overflow to hidden */}
             <Flex>
               <LeftSidePanel selectedTab={tabIndex} />
@@ -33,7 +33,7 @@ import {
                 alignItems="center"
               >
                 {/* Center the content */}
-                <AddSongForm />
+                <AddArtistForm />
               </Flex>
             </Center>
           </Flex>
@@ -46,7 +46,7 @@ import {
             <Center flex="1">
               <Flex
                 backgroundColor="#050A30"
-                mt="32px"
+                mt="16px"
                 borderRadius="10px"
                 maxW="350px"
                 flex="1"
@@ -57,7 +57,7 @@ import {
                 alignItems="center"
               >
                 {/* Center the content */}
-                <AddSongForm />
+                <AddArtistForm />
               </Flex>
             </Center>
           </Flex>
@@ -66,5 +66,5 @@ import {
     );
   }
   
-  export default SongForm;
+  export default ArtistForm;
   

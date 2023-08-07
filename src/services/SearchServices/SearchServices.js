@@ -26,3 +26,16 @@ export const getAllGenres = async () => {
         return null;
     }
 }
+
+export const getAllArtists = async () => { 
+    try
+    {
+        const response = await fetch(`https://tunehub-server.onrender.com/artist`)  
+        const data = await response.json();
+        return data;
+    }
+    catch (err)
+    {
+        console.log("There was some error while fetching the artist information");
+    }
+}

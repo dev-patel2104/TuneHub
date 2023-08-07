@@ -4,10 +4,10 @@ const reviewController = require('../controllers/review.js');
 const router = express.Router();
 
 // Route to add a new review for a song
-router.patch('/add/:id', reviewController.addReview);
+router.post('/add/:id', reviewController.addReview);
 
 // Route to edit an existing review for a song
-router.patch('/edit/:id', reviewController.editReview);
+router.put('/edit/:id', reviewController.editReview);
 
 // Route to remove a review for a song
 router.delete('/delete/:id', reviewController.removeReview);

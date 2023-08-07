@@ -3,6 +3,8 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import LandingPageSVG from '../../assets/landingpage.svg';
+import { NavLink } from 'react-router-dom';
+import { isAuthenticated } from '../../services/AuthenticationServices/AuthenticationServices';
 
 function LandingPage() {
     const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
@@ -29,7 +31,9 @@ function LandingPage() {
                     </Flex>
                 </Flex>
                 {/* CTA */}
-                <Button fontSize="md" fontWeight="medium" colorScheme='teal' mt="16px" height="40px" width="69%">Get Started</Button>
+                <NavLink to={isAuthenticated() ? "/spotify" : "/user/login"}>
+                    <Button fontSize="md" fontWeight="medium" colorScheme='teal' mt="16px" height="40px" width="69%">Get Started</Button>
+                </NavLink>
             </Flex>
             :
             <Flex w="100%" minHeight="90vh" backgroundColor="#000C66" alignItems="center" justifyContent="space-evenly">
@@ -48,7 +52,9 @@ function LandingPage() {
                         <Text fontSize="4xl" fontWeight="medium" color="white">Spotify Integration</Text>
                     </Flex>
                     {/* CTA */}
-                    <Button fontSize="2xl" fontWeight="medium" colorScheme='teal' mt="16px" height="48px">Get Started</Button>
+                    <NavLink to={isAuthenticated() ? "/spotify" : "/user/login"}>
+                        <Button fontSize="2xl" fontWeight="medium" colorScheme='teal' mt="16px" height="48px">Get Started</Button>
+                    </NavLink>
                 </Flex>
                 {/* Display Image*/}
                 <img alt="TuneHub" src={LandingPageSVG} width="50%" />

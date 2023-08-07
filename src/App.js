@@ -3,7 +3,7 @@ import {
   theme
 } from '@chakra-ui/react';
 import React from 'react';
-import { RouterProvider, createBrowserRouter, } from "react-router-dom";
+import { Navigate, RouterProvider, createBrowserRouter, } from "react-router-dom";
 import Login from './pages/Authentication/Login';
 import Register from './pages/Registration/Register';
 import ViewProfile from './pages/UserProfile/ViewProfile';
@@ -21,17 +21,20 @@ import SpotifyTopSongs from './pages/SpotifyIntegration/SpotifyTopSongs';
 import SpotifyArtists from './pages/SpotifyIntegration/SpotifyArtists';
 import SpotifyRecentlyPlayed from './pages/SpotifyIntegration/SpotifyRecentlyPlayed';
 import SongForm from './pages/Admin/SongForm';
-import Search from './pages/Search/SearchSong';
+import ArtistForm from './pages/Admin/ArtistForm';
+import SearchSong from './pages/Search/SearchSong';
+import SearchArtist from './pages/Search/SearchArtist';
 import ChangePassword from './pages/Authentication/ChangePassword';
 import MyFavorites from './pages/Favorites/MyFavorites';
 import SongPage from './pages/Song/SongPage';
+import AddReview from './pages/Song/AddReview';
+import { isAuthenticated } from './services/AuthenticationServices/AuthenticationServices';
 
 const router = createBrowserRouter([
   {
     element: <LayoutWithNav />,
     children: [
       {
-        // Change this path back to the Admin page
         path: "/",
         element: <LandingPage />
       },
@@ -49,15 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path:"/trivia",
-        element: <Quiz/>
+        element: isAuthenticated() ? <Quiz/> :<Navigate to="/user/login"/>
       },
       {
         path: "/leaderboard",
-        element: <Leaderboard />
+        element: isAuthenticated() ? <Leaderboard /> : <Navigate to="/user/login"/>
       },
       {
         path: "/user/profile",
-        element: <ViewProfile />
+        element: isAuthenticated() ? <ViewProfile /> : <Navigate to="/user/login"/>
       },
       {
         path: "/spotify",
@@ -77,28 +80,36 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <AdminPage />
+        element: isAuthenticated() ? <AdminPage /> : <Navigate to="/user/login"/>
       },
       {
         path: "/admin/addSong",
-        element: <SongForm />
+        element: isAuthenticated() ? <SongForm /> : <Navigate to="/user/login"/>
+      },
+      {
+        path: "/admin/addArtist",
+        element: isAuthenticated() ? <ArtistForm /> : <Navigate to="/user/login"/>
       },
       {
         path: "/my-favorites",
-        element: <MyFavorites />
+        element: isAuthenticated() ? <MyFavorites /> : <Navigate to="/user/login"/>
       },
       {
         path: "/song/:songID",
-        element: <SongPage />
+        element: isAuthenticated() ? <SongPage /> : <Navigate to="/user/login"/>
       },
       {
         path: "/search/song",
-        element : <Search/>
+        element : isAuthenticated() ? <SearchSong/> : <Navigate to="/user/login"/>
       },
-      // {
-      //   path : "/search/artist",
-      //   element :<>,
-      // }
+      {
+        path: "/song/:songID/add-review",
+        element: isAuthenticated() ? <AddReview/> : <Navigate to="/user/login"/>
+      },
+      {
+        path : "/search/artist",
+        element : isAuthenticated() ? <SearchArtist/> : <Navigate to="/user/login"/>
+      }
     ]
   },
   {

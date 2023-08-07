@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 // Function to add a new artist to the database
 exports.addArtist = async (req, res) => {
-    const { name, genre } = req.body;
+    const { name, genre, image } = req.body;
     const newId = uuidv4();
 
     // Input validation to ensure required fields are not null or empty
@@ -22,7 +22,8 @@ exports.addArtist = async (req, res) => {
         const newArtist = new Artist({
             id: newId,
             name,
-            genre
+            genre,
+            image,
         });
 
         // Saving the new artist to the database
