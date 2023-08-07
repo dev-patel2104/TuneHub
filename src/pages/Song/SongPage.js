@@ -12,7 +12,7 @@ import ReviewContainer from '../../components/ReviewComponent/ReviewContainer';
 
 function SongPage() {
     // const isMobile = useMediaQuery({ query: '(max-width: 1080px)' });
-    const [userid, setUserID] = useState("1");
+    const userid = JSON.parse(localStorage.getItem("user")).id;
     const [song, setSong] = useState(null);
     const { songID } = useParams();
     const [isFav, setIsFav] = useState(false);
@@ -21,11 +21,7 @@ function SongPage() {
 
 
     useEffect(() => {
-        const userJSON = localStorage.getItem("user");
-        if (userJSON) {
-            const userFromLocalStorage = JSON.parse(userJSON);
-            setUserID(userFromLocalStorage.id);
-        }
+        
         const fetchData = async () => {
             const reviewData = await getReviews(songID);
             const data = await getSong(songID);
