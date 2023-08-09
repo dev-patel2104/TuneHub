@@ -56,7 +56,7 @@ function NavBar() {
                   </Box>
                   <Box>
                     <NavLink to='/my-favorites' onClick={onClose}>
-                      <Text fontWeight="medium" color="white" >My Favorites</Text>
+                      <Text fontWeight="medium" color="white" >Favorites</Text>
                     </NavLink>
                   </Box>
                   <Box>
@@ -77,7 +77,7 @@ function NavBar() {
                   {isAdmin() ?
                     <Box>
                       <NavLink to='/admin' onClick={onClose}>
-                        <Text fontWeight="medium" color="white" >Admin Dashboard</Text>
+                        <Text fontWeight="medium" color="white" >Admin</Text>
                       </NavLink>
                     </Box> : null}
                   {/* About Us */}
@@ -99,7 +99,7 @@ function NavBar() {
                     </NavLink>
                   </Box>
                   {user ? <NavLink to='/user/profile'>
-                    <Text fontWeight="medium" color="white">My Profile</Text>
+                    <Text fontWeight="medium" color="white">Profile</Text>
                   </NavLink> : null}
                   {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid">Log Out</Button> : <NavLink to='/user/login'>
                     <Button fontWeight="medium" colorScheme="teal" variant="solid">Sign In/Up</Button>
@@ -131,7 +131,7 @@ function NavBar() {
           </Box>
           <Box>
             <NavLink to='/my-favorites'>
-              <Text fontWeight="medium" color="white" fontSize="lg">My Favorites</Text>
+              <Text fontWeight="medium" color="white" fontSize="lg">Favorites</Text>
             </NavLink>
           </Box>
           <Box>
@@ -151,7 +151,7 @@ function NavBar() {
           </Box>
           {isAdmin() ? <Box>
             <NavLink to='/admin'>
-              <Text fontWeight="medium" color="white" fontSize="lg">Admin Dashboard</Text>
+              <Text fontWeight="medium" color="white" fontSize="lg">Admin</Text>
             </NavLink>
           </Box> : null}
           {/* About Us */}
@@ -173,7 +173,7 @@ function NavBar() {
             </NavLink>
           </Box>
           {user ? <NavLink to='/user/profile'>
-            <Text fontWeight="medium" color="white" fontSize="lg">My Profile</Text>
+            <Text fontWeight="medium" color="white" fontSize="lg">Profile</Text>
           </NavLink>: null}
           {/* CTA */}
           {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Log Out</Button> : <NavLink to='/user/login'>
