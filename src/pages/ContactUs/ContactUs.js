@@ -6,9 +6,9 @@ import TwitterIcon from "../../assets/icon_twitter_white.svg";
 import FacebookIcon from "../../assets/icons_facebook.svg";
 
 function ContactUs() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+    const [name, setName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [message, setMessage] = useState(null);
     const [nameError, setNameError] = useState('');
     const [messageError, setMessageError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -63,7 +63,7 @@ function ContactUs() {
     };
 
     const handleSubmit = () => {
-        if (!nameError && !emailError && !messageError) {
+        if (!nameError && !emailError && !messageError && name && email && message) {
             toast({
                 title: 'Message sent',
                 description: "We've received your message, you will hear back from us soon!",
@@ -93,6 +93,7 @@ function ContactUs() {
                                 borderColor="white"
                                 focusBorderColor="teal"
                                 textColor="white"
+                                required="true"
                             />
                             <FormErrorMessage color="white">{nameError}</FormErrorMessage>
                         </FormControl>
@@ -106,6 +107,7 @@ function ContactUs() {
                                 borderColor="white"
                                 focusBorderColor="teal"
                                 textColor="white"
+                                required="true"
                             />
                             <FormErrorMessage color="white">{emailError}</FormErrorMessage>
                         </FormControl>
@@ -119,6 +121,7 @@ function ContactUs() {
                                 borderColor="white"
                                 focusBorderColor="teal"
                                 textColor="white"
+                                required="true"
                             />
                             <FormErrorMessage color="white">{messageError}</FormErrorMessage>
                         </FormControl>
@@ -195,6 +198,7 @@ function ContactUs() {
                                     borderColor="white"
                                     focusBorderColor="teal"
                                     textColor="white"
+                                    required
                                 />
                                 <FormErrorMessage color="white">{nameError}</FormErrorMessage>
                             </FormControl>
@@ -208,6 +212,7 @@ function ContactUs() {
                                     borderColor="white"
                                     focusBorderColor="teal"
                                     textColor="white"
+                                    required
                                 />
                                 <FormErrorMessage color="white">{emailError}</FormErrorMessage>
                             </FormControl>
@@ -221,6 +226,7 @@ function ContactUs() {
                                     borderColor="white"
                                     focusBorderColor="teal"
                                     textColor="white"
+                                    required
                                 />
                                 <FormErrorMessage color="white">{messageError}</FormErrorMessage>
                             </FormControl>

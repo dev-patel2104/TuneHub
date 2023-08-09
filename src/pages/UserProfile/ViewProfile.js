@@ -81,7 +81,7 @@ export default function CustomerProfile() {
 
     try {
       // Make the API call to update the user data
-      const response = await fetch(`https://tunehub-server.onrender.com/users/edit/${user.id}`, {
+      const response = await fetch(`https://tunehub-server.onrender.com/users/edit/${userFromLocalStorage.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -96,18 +96,8 @@ export default function CustomerProfile() {
         setTimeout(() => {
           setSuccessMessage(null);
         }, 3000);
-        const updatedUserData = await response.json();
-        setFirstName(updatedUserData.firstName);
-        setLastName(updatedUserData.lastName);
-        setEmail(updatedUserData.email);
-        setDateOfBirth(updatedUserData.dateOfBirth);
-
-        // Update user information in local storage
-        localStorage.setItem("user", JSON.stringify(updatedUserData));
-        user.firstName = updatedUserData.firstName;
-        user.lastName = updatedUserData.lastName;
-        user.dateOfBirth = updatedUserData.dateOfBirth;
-
+        await response.json();
+        window.location.reload();
         setIsEditing(false);
       } else {
         setSuccessMessage("");

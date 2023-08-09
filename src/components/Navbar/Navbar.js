@@ -98,6 +98,9 @@ function NavBar() {
                       <Text fontWeight="medium" color="white">Contact Us</Text>
                     </NavLink>
                   </Box>
+                  {user ? <NavLink to='/user/profile'>
+                    <Text fontWeight="medium" color="white">My Profile</Text>
+                  </NavLink> : null}
                   {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid">Log Out</Button> : <NavLink to='/user/login'>
                     <Button fontWeight="medium" colorScheme="teal" variant="solid">Sign In/Up</Button>
                   </NavLink>}
@@ -169,6 +172,9 @@ function NavBar() {
               <Text fontWeight="medium" color="white" fontSize="lg">Contact Us</Text>
             </NavLink>
           </Box>
+          {user ? <NavLink to='/user/profile'>
+            <Text fontWeight="medium" color="white" fontSize="lg">My Profile</Text>
+          </NavLink>: null}
           {/* CTA */}
           {user ? <Button onClick={handleLogOut} fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Log Out</Button> : <NavLink to='/user/login'>
             <Button fontWeight="medium" colorScheme="teal" variant="solid" fontSize="lg">Sign In/Up</Button>

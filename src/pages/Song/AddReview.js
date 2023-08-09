@@ -14,17 +14,13 @@ function AddReview() {
     const { songID } = useParams();
     const [rating, setRating] = useState(3);
     const [review, setReview] = useState('');
-    const [userName, setUserName] = useState("Harsh");
+    const userName = JSON.parse(localStorage.getItem("user")).firstName;
     const [song, setSong] = useState(null);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        const userJSON = localStorage.getItem("user");
-        if (userJSON) {
-            const userFromLocalStorage = JSON.parse(userJSON);
-            setUserName(userFromLocalStorage.firstName);
-        }
+       
         const fetchData = async () => {
             const data = await getSong(songID);
             setSong(data);
