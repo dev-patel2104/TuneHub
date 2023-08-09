@@ -12,7 +12,7 @@ function FAQ() {
                 {/* Title */}
                 <Text fontSize="xl" color="white" fontWeight="medium" mt="24px" mb="40px" ml="8px" mr="8px">Frequently Asked Questions</Text>
                 {/* Expandable accordion */}
-                <Accordion defaultIndex={[0]} allowMultiple width="80%" >
+                <Accordion allowMultiple width="80%" >
                     {
                         FAQs.map((item, index) => (
                             <AccordionItem pt="8px" pb="8px">
@@ -37,7 +37,7 @@ function FAQ() {
                 {/* Title */}
                 <Text fontSize="5xl" color="white" fontWeight="medium" mt="32px" mb="64px">Frequently Asked Questions</Text>
                 {/* Expandable accordion */}
-                <Accordion defaultIndex={[0]} allowMultiple width="1080px" >
+                <Accordion allowMultiple width="1080px" >
                     {
                         FAQs.map((item, index) => (
                             <AccordionItem pt="8px" pb="8px">
