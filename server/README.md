@@ -9,7 +9,7 @@
 *  *Render Deployment URL*: <https://b00920818-web-tutorial-5.onrender.com>
 ## Authors
 
-* [Harsh Pranav Patel](hr979846@dal.ca) - *(Developer)*
+* Dev Patel - *(Developer)*
 
 ## Deployment
 
